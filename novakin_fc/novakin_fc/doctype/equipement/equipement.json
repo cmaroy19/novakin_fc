@@ -1,0 +1,153 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:nom",
+ "creation": "2026-07-25 08:47:47.981110",
+ "custom": 1,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_info",
+  "nom",
+  "categorie",
+  "reference",
+  "col_i",
+  "taille",
+  "etat",
+  "sec_stock",
+  "quantite",
+  "seuil_alerte",
+  "col_s",
+  "emplacement",
+  "cout_unitaire",
+  "statut_stock",
+  "sec_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_info",
+   "fieldtype": "Section Break",
+   "label": "Informations"
+  },
+  {
+   "fieldname": "nom",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "D\u00e9signation",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "categorie",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Cat\u00e9gorie",
+   "options": "\nMaillots\nBallons\nMat\u00e9riel d'entra\u00eenement\nM\u00e9dical\nUniformes\nAutre"
+  },
+  {
+   "fieldname": "reference",
+   "fieldtype": "Data",
+   "label": "R\u00e9f\u00e9rence"
+  },
+  {
+   "fieldname": "col_i",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "taille",
+   "fieldtype": "Data",
+   "label": "Taille"
+  },
+  {
+   "default": "Neuf",
+   "fieldname": "etat",
+   "fieldtype": "Select",
+   "label": "\u00c9tat",
+   "options": "Neuf\nBon\nUs\u00e9\nHors service"
+  },
+  {
+   "fieldname": "sec_stock",
+   "fieldtype": "Section Break",
+   "label": "Stock"
+  },
+  {
+   "default": "0",
+   "fieldname": "quantite",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Quantit\u00e9 en Stock"
+  },
+  {
+   "default": "0",
+   "fieldname": "seuil_alerte",
+   "fieldtype": "Int",
+   "label": "Seuil d'Alerte"
+  },
+  {
+   "fieldname": "col_s",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "emplacement",
+   "fieldtype": "Data",
+   "label": "Emplacement"
+  },
+  {
+   "fieldname": "cout_unitaire",
+   "fieldtype": "Currency",
+   "label": "Co\u00fbt Unitaire"
+  },
+  {
+   "fieldname": "statut_stock",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Statut Stock",
+   "options": "\nDisponible\nStock Faible\nRupture"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sec_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "grid_page_length": 50,
+ "icon": "fa fa-tshirt",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-27 12:15:25.471170",
+ "modified_by": "Administrator",
+ "module": "NOVAKIN FC",
+ "name": "Equipement",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "nom",
+ "track_changes": 1
+}

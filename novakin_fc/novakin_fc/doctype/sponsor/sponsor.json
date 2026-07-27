@@ -1,0 +1,159 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:nom_sponsor",
+ "creation": "2026-07-25 08:47:48.702041",
+ "custom": 1,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_info",
+  "nom_sponsor",
+  "type_partenariat",
+  "secteur",
+  "col_i",
+  "contact",
+  "telephone",
+  "email",
+  "sec_contrat",
+  "montant",
+  "date_debut",
+  "date_fin",
+  "col_c",
+  "statut",
+  "contreparties",
+  "sec_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_info",
+   "fieldtype": "Section Break",
+   "label": "Informations Sponsor"
+  },
+  {
+   "fieldname": "nom_sponsor",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nom du Sponsor / Partenaire",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "type_partenariat",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Type de Partenariat",
+   "options": "\nSponsor Principal\nSponsor Secondaire\nPartenaire Technique\nPartenaire M\u00e9dia\nM\u00e9c\u00e8ne"
+  },
+  {
+   "fieldname": "secteur",
+   "fieldtype": "Data",
+   "label": "Secteur d'Activit\u00e9"
+  },
+  {
+   "fieldname": "col_i",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact",
+   "fieldtype": "Data",
+   "label": "Personne de Contact"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "T\u00e9l\u00e9phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "sec_contrat",
+   "fieldtype": "Section Break",
+   "label": "Contrat de Partenariat"
+  },
+  {
+   "fieldname": "montant",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Montant du Contrat"
+  },
+  {
+   "fieldname": "date_debut",
+   "fieldtype": "Date",
+   "label": "Date de D\u00e9but"
+  },
+  {
+   "fieldname": "date_fin",
+   "fieldtype": "Date",
+   "in_standard_filter": 1,
+   "label": "Date de Fin"
+  },
+  {
+   "fieldname": "col_c",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Prospect",
+   "fieldname": "statut",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Statut",
+   "options": "Prospect\nActif\nExpir\u00e9\nR\u00e9sili\u00e9"
+  },
+  {
+   "fieldname": "contreparties",
+   "fieldtype": "Small Text",
+   "label": "Contreparties"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sec_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Text",
+   "label": "Notes"
+  }
+ ],
+ "grid_page_length": 50,
+ "icon": "fa fa-handshake",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-27 12:15:23.469057",
+ "modified_by": "Administrator",
+ "module": "NOVAKIN FC",
+ "name": "Sponsor",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "nom_sponsor",
+ "track_changes": 1
+}

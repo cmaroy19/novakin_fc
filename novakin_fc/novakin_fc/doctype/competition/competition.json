@@ -1,0 +1,93 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:nom_competition",
+ "creation": "2026-07-25 08:46:42.531871",
+ "custom": 1,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "nom_competition",
+  "type_competition",
+  "saison",
+  "col_c",
+  "date_debut",
+  "date_fin",
+  "organisateur"
+ ],
+ "fields": [
+  {
+   "fieldname": "nom_competition",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nom de la Comp\u00e9tition",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "type_competition",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Type",
+   "options": "\nLigue / Championnat\nCoupe\nTournoi\nMatch Amical\nChampionnat Continental\nComp\u00e9tition Internationale"
+  },
+  {
+   "fieldname": "saison",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "Saison"
+  },
+  {
+   "fieldname": "col_c",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_debut",
+   "fieldtype": "Date",
+   "label": "Date de D\u00e9but"
+  },
+  {
+   "fieldname": "date_fin",
+   "fieldtype": "Date",
+   "label": "Date de Fin"
+  },
+  {
+   "fieldname": "organisateur",
+   "fieldtype": "Data",
+   "label": "Organisateur"
+  }
+ ],
+ "grid_page_length": 50,
+ "icon": "fa fa-trophy",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-27 12:15:24.066611",
+ "modified_by": "Administrator",
+ "module": "NOVAKIN FC",
+ "name": "Competition",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "nom_competition",
+ "track_changes": 1
+}

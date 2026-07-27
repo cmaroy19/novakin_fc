@@ -1,0 +1,319 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:NFC-J-{#####}",
+ "creation": "2026-07-25 08:46:12.706611",
+ "custom": 1,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_perso",
+  "matricule",
+  "nom_complet",
+  "date_naissance",
+  "age",
+  "nationalite",
+  "col_perso",
+  "numero_maillot",
+  "poste",
+  "pied_fort",
+  "categorie",
+  "statut",
+  "sec_contact",
+  "telephone",
+  "email",
+  "col_contact",
+  "adresse",
+  "photo",
+  "sec_contrat",
+  "date_debut_contrat",
+  "date_fin_contrat",
+  "duree_contrat",
+  "col_contrat",
+  "salaire",
+  "bonus",
+  "agent",
+  "sec_stats",
+  "matchs_joues",
+  "buts",
+  "passes_decisives",
+  "col_stats",
+  "cartons_jaunes",
+  "cartons_rouges",
+  "minutes_jouees",
+  "sec_medical",
+  "blessures",
+  "ratio_buts",
+  "notes_medicales"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_perso",
+   "fieldtype": "Section Break",
+   "label": "Informations Personnelles"
+  },
+  {
+   "bold": 1,
+   "description": "Identifiant unique du joueur (g\u00e9n\u00e9r\u00e9 automatiquement).",
+   "fieldname": "matricule",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Matricule",
+   "read_only": 1
+  },
+  {
+   "fieldname": "nom_complet",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Nom Complet",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "date_naissance",
+   "fieldtype": "Date",
+   "label": "Date de Naissance"
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "\u00c2ge",
+   "read_only": 1
+  },
+  {
+   "description": "S\u00e9lectionnez le pays (nationalit\u00e9 sportive).",
+   "fieldname": "nationalite",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Nationalit\u00e9",
+   "options": "Country"
+  },
+  {
+   "fieldname": "col_perso",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Doit \u00eatre unique : un num\u00e9ro d\u00e9j\u00e0 attribu\u00e9 sera refus\u00e9.",
+   "fieldname": "numero_maillot",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Num\u00e9ro de Maillot",
+   "unique": 1
+  },
+  {
+   "fieldname": "poste",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Poste",
+   "options": "\nGardien\nD\u00e9fenseur\nMilieu\nAttaquant"
+  },
+  {
+   "fieldname": "pied_fort",
+   "fieldtype": "Select",
+   "label": "Pied Fort",
+   "options": "\nDroit\nGauche\nAmbidextre"
+  },
+  {
+   "fieldname": "categorie",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Cat\u00e9gorie",
+   "options": "\nSenior\nEspoir (U21)\nJunior (U19)\nCadet (U17)\nMinime (U15)"
+  },
+  {
+   "default": "Actif",
+   "fieldname": "statut",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Statut",
+   "options": "Actif\nBless\u00e9\nSuspendu\nPr\u00eat\u00e9\nInactif"
+  },
+  {
+   "fieldname": "sec_contact",
+   "fieldtype": "Section Break",
+   "label": "Coordonn\u00e9es"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "T\u00e9l\u00e9phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "col_contact",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "adresse",
+   "fieldtype": "Small Text",
+   "label": "Adresse"
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sec_contrat",
+   "fieldtype": "Section Break",
+   "label": "Contrat"
+  },
+  {
+   "fieldname": "date_debut_contrat",
+   "fieldtype": "Date",
+   "label": "D\u00e9but du Contrat"
+  },
+  {
+   "fieldname": "date_fin_contrat",
+   "fieldtype": "Date",
+   "in_standard_filter": 1,
+   "label": "Fin du Contrat"
+  },
+  {
+   "description": "Calcul\u00e9e automatiquement \u00e0 partir des dates de d\u00e9but et de fin.",
+   "fieldname": "duree_contrat",
+   "fieldtype": "Int",
+   "label": "Dur\u00e9e (mois)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_contrat",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Salaire mensuel brut convenu au contrat (USD).",
+   "fieldname": "salaire",
+   "fieldtype": "Currency",
+   "label": "Salaire"
+  },
+  {
+   "description": "Montant total des primes pr\u00e9vues (signature, objectifs, matchs...).",
+   "fieldname": "bonus",
+   "fieldtype": "Currency",
+   "label": "Primes / Bonus"
+  },
+  {
+   "description": "Nom de l'agent ou repr\u00e9sentant l\u00e9gal du joueur.",
+   "fieldname": "agent",
+   "fieldtype": "Data",
+   "label": "Agent / Repr\u00e9sentant"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sec_stats",
+   "fieldtype": "Section Break",
+   "label": "Statistiques Sportives"
+  },
+  {
+   "description": "Calcul automatique depuis les matchs.",
+   "fieldname": "matchs_joues",
+   "fieldtype": "Int",
+   "label": "Matchs Jou\u00e9s",
+   "read_only": 1
+  },
+  {
+   "description": "Calcul automatique depuis les matchs.",
+   "fieldname": "buts",
+   "fieldtype": "Int",
+   "label": "Buts",
+   "read_only": 1
+  },
+  {
+   "description": "Calcul automatique depuis les matchs.",
+   "fieldname": "passes_decisives",
+   "fieldtype": "Int",
+   "label": "Passes D\u00e9cisives",
+   "read_only": 1
+  },
+  {
+   "fieldname": "col_stats",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Calcul automatique depuis les matchs.",
+   "fieldname": "cartons_jaunes",
+   "fieldtype": "Int",
+   "label": "Cartons Jaunes",
+   "read_only": 1
+  },
+  {
+   "description": "Calcul automatique depuis les matchs.",
+   "fieldname": "cartons_rouges",
+   "fieldtype": "Int",
+   "label": "Cartons Rouges",
+   "read_only": 1
+  },
+  {
+   "description": "Cumul automatique depuis les feuilles de match.",
+   "fieldname": "minutes_jouees",
+   "fieldtype": "Int",
+   "label": "Minutes Jou\u00e9es",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sec_medical",
+   "fieldtype": "Section Break",
+   "label": "Suivi M\u00e9dical / Blessures"
+  },
+  {
+   "fieldname": "blessures",
+   "fieldtype": "Text",
+   "label": "Historique des Blessures"
+  },
+  {
+   "fieldname": "ratio_buts",
+   "fieldtype": "Float",
+   "label": "Ratio Buts/Match",
+   "precision": "2",
+   "read_only": 1
+  },
+  {
+   "fieldname": "notes_medicales",
+   "fieldtype": "Small Text",
+   "label": "Notes M\u00e9dicales"
+  }
+ ],
+ "grid_page_length": 50,
+ "icon": "fa fa-user",
+ "image_field": "photo",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-27 12:15:21.406682",
+ "modified_by": "Administrator",
+ "module": "NOVAKIN FC",
+ "name": "Joueur",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "nom_complet",
+ "track_changes": 1
+}

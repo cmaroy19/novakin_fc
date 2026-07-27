@@ -1,0 +1,93 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-25 08:46:54.860372",
+ "custom": 1,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "joueur",
+  "titulaire",
+  "minutes",
+  "buts",
+  "passes",
+  "cartons_jaunes",
+  "cartons_rouges",
+  "note",
+  "blessure"
+ ],
+ "fields": [
+  {
+   "fieldname": "joueur",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Joueur",
+   "options": "Joueur",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "titulaire",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Titulaire"
+  },
+  {
+   "fieldname": "minutes",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Minutes"
+  },
+  {
+   "fieldname": "buts",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Buts"
+  },
+  {
+   "fieldname": "passes",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Passes D."
+  },
+  {
+   "fieldname": "cartons_jaunes",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "CJ"
+  },
+  {
+   "fieldname": "cartons_rouges",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "CR"
+  },
+  {
+   "fieldname": "note",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Note /10"
+  },
+  {
+   "fieldname": "blessure",
+   "fieldtype": "Data",
+   "label": "Blessure"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-07-27 12:15:25.236111",
+ "modified_by": "Administrator",
+ "module": "NOVAKIN FC",
+ "name": "Performance Match Joueur",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

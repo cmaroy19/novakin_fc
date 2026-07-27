@@ -1,0 +1,318 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:CS-{YYYY}-{#####}",
+ "creation": "2026-07-25 08:48:33.417352",
+ "custom": 1,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_ref",
+  "reference",
+  "type_courrier",
+  "date_creation",
+  "date_envoi",
+  "col_r",
+  "lieu_redaction",
+  "mode_envoi",
+  "priorite",
+  "confidentiel",
+  "sec_dest",
+  "civilite",
+  "destinataire",
+  "fonction_destinataire",
+  "type_destinataire",
+  "col_d",
+  "contact_destinataire",
+  "adresse_destinataire",
+  "sec_obj",
+  "objet",
+  "salutation",
+  "corps",
+  "formule_politesse",
+  "piece_jointe",
+  "sec_sign",
+  "signataire",
+  "fonction_signataire",
+  "col_sign",
+  "signature_image",
+  "sec_valid",
+  "redacteur",
+  "service",
+  "col_v",
+  "validateur",
+  "statut",
+  "sec_hist",
+  "historique",
+  "qr_code"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_ref",
+   "fieldtype": "Section Break",
+   "label": "R\u00e9f\u00e9rence"
+  },
+  {
+   "bold": 1,
+   "fieldname": "reference",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "R\u00e9f\u00e9rence",
+   "read_only": 1
+  },
+  {
+   "default": "Lettre Officielle",
+   "description": "D\u00e9termine la mise en forme \u00e0 l'impression.",
+   "fieldname": "type_courrier",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Type de Courrier",
+   "options": "Lettre Officielle\nInvitation\nConvocation\nPartenariat / Sponsoring\nR\u00e9ponse\nR\u00e9clamation\nNotification\nAttestation",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date_creation",
+   "fieldtype": "Date",
+   "in_standard_filter": 1,
+   "label": "Date de Cr\u00e9ation",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_envoi",
+   "fieldtype": "Date",
+   "in_standard_filter": 1,
+   "label": "Date d'Envoi"
+  },
+  {
+   "fieldname": "col_r",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Kinshasa",
+   "fieldname": "lieu_redaction",
+   "fieldtype": "Data",
+   "label": "Lieu de R\u00e9daction"
+  },
+  {
+   "fieldname": "mode_envoi",
+   "fieldtype": "Select",
+   "label": "Mode d'Envoi",
+   "options": "\nCourrier postal\nEmail\nRemise en main propre\nFax\nAutre"
+  },
+  {
+   "default": "Normale",
+   "fieldname": "priorite",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Priorit\u00e9",
+   "options": "Normale\nUrgente\nTr\u00e8s urgente"
+  },
+  {
+   "default": "0",
+   "fieldname": "confidentiel",
+   "fieldtype": "Check",
+   "label": "Confidentiel"
+  },
+  {
+   "fieldname": "sec_dest",
+   "fieldtype": "Section Break",
+   "label": "Destinataire"
+  },
+  {
+   "fieldname": "civilite",
+   "fieldtype": "Select",
+   "label": "Civilit\u00e9",
+   "options": "\nMonsieur\nMadame\nMonsieur le Pr\u00e9sident\nMadame la Pr\u00e9sidente\nMonsieur le Directeur\nMadame la Directrice\nMessieurs\nMesdames"
+  },
+  {
+   "fieldname": "destinataire",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Destinataire",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fonction_destinataire",
+   "fieldtype": "Data",
+   "label": "Fonction / Organisation"
+  },
+  {
+   "fieldname": "type_destinataire",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Type de Destinataire",
+   "options": "\nClub\nSponsor\nLigue\nAutorit\u00e9 sportive\nFournisseur\nParticulier\nAutre"
+  },
+  {
+   "fieldname": "col_d",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact_destinataire",
+   "fieldtype": "Data",
+   "label": "Contact / Email"
+  },
+  {
+   "fieldname": "adresse_destinataire",
+   "fieldtype": "Small Text",
+   "label": "Adresse"
+  },
+  {
+   "fieldname": "sec_obj",
+   "fieldtype": "Section Break",
+   "label": "Objet et Contenu"
+  },
+  {
+   "fieldname": "objet",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Objet",
+   "reqd": 1
+  },
+  {
+   "default": "Madame, Monsieur,",
+   "description": "Ex: Monsieur le Pr\u00e9sident,",
+   "fieldname": "salutation",
+   "fieldtype": "Data",
+   "label": "Formule d'Appel"
+  },
+  {
+   "fieldname": "corps",
+   "fieldtype": "Text Editor",
+   "label": "Corps du Courrier",
+   "reqd": 1
+  },
+  {
+   "default": "Veuillez agr\u00e9er, Madame, Monsieur, l'expression de nos salutations distingu\u00e9es.",
+   "fieldname": "formule_politesse",
+   "fieldtype": "Small Text",
+   "label": "Formule de Politesse"
+  },
+  {
+   "fieldname": "piece_jointe",
+   "fieldtype": "Attach",
+   "label": "Pi\u00e8ce Jointe"
+  },
+  {
+   "fieldname": "sec_sign",
+   "fieldtype": "Section Break",
+   "label": "Signature"
+  },
+  {
+   "description": "Nom de la personne qui signe.",
+   "fieldname": "signataire",
+   "fieldtype": "Data",
+   "label": "Signataire"
+  },
+  {
+   "default": "Le Secr\u00e9taire G\u00e9n\u00e9ral",
+   "fieldname": "fonction_signataire",
+   "fieldtype": "Data",
+   "label": "Fonction du Signataire"
+  },
+  {
+   "fieldname": "col_sign",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Image de la signature (optionnel).",
+   "fieldname": "signature_image",
+   "fieldtype": "Attach Image",
+   "label": "Signature (image)"
+  },
+  {
+   "fieldname": "sec_valid",
+   "fieldtype": "Section Break",
+   "label": "R\u00e9daction et Validation"
+  },
+  {
+   "fieldname": "redacteur",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "R\u00e9dacteur",
+   "options": "User"
+  },
+  {
+   "fieldname": "service",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Service \u00c9metteur",
+   "options": "\nDirection\nFinance\nMarketing\nBilletterie\nSecr\u00e9tariat\nStaff Technique\nM\u00e9dical\nLogistique"
+  },
+  {
+   "fieldname": "col_v",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "validateur",
+   "fieldtype": "Link",
+   "label": "Validateur",
+   "options": "User"
+  },
+  {
+   "bold": 1,
+   "default": "Brouillon",
+   "fieldname": "statut",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Statut",
+   "options": "Brouillon\nEn validation\nValid\u00e9\nEnvoy\u00e9\nArchiv\u00e9",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sec_hist",
+   "fieldtype": "Section Break",
+   "label": "Historique"
+  },
+  {
+   "fieldname": "historique",
+   "fieldtype": "Table",
+   "label": "Historique",
+   "options": "Suivi Courrier"
+  },
+  {
+   "fieldname": "qr_code",
+   "fieldtype": "Long Text",
+   "hidden": 1,
+   "label": "QR Code",
+   "no_copy": 1,
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "icon": "fa fa-paper-plane",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-27 12:15:22.569743",
+ "modified_by": "Administrator",
+ "module": "NOVAKIN FC",
+ "name": "Courrier Sortant",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "objet",
+ "track_changes": 1
+}

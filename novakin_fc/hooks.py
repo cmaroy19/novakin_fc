@@ -256,3 +256,55 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+# Fixtures — NOVAKIN FC
+# ---------------------
+fixtures = [
+    # Scripts client liés aux DocTypes du module
+    {
+        "dt": "Client Script",
+        "filters": [["dt", "in", [
+            "Joueur", "Match", "Staff", "Sponsor", "Equipement",
+            "Courrier Entrant", "Courrier Sortant", "Entrainement",
+            "Competition", "Adversaire"
+        ]]]
+    },
+    # Rapports du module
+    {
+        "dt": "Report",
+        "filters": [["ref_doctype", "in", [
+            "Joueur", "Equipement", "Sponsor",
+            "Courrier Entrant", "Courrier Sortant"
+        ]]]
+    },
+    # Cartes du tableau de bord
+    {
+        "dt": "Number Card",
+        "filters": [["document_type", "in", [
+            "Joueur", "Match", "Staff", "Sponsor", "Equipement",
+            "Courrier Entrant", "Courrier Sortant", "Entrainement",
+            "Competition", "Adversaire"
+        ]]]
+    },
+    # Espace de travail (tableau de bord)
+    {
+        "dt": "Workspace",
+        "filters": [["name", "=", "NOVAKIN FC"]]
+    },
+    # Personnalisations éventuelles (Custom Field / Property Setter)
+    {
+        "dt": "Custom Field",
+        "filters": [["dt", "in", [
+            "Joueur", "Match", "Staff", "Sponsor", "Equipement",
+            "Courrier Entrant", "Courrier Sortant", "Entrainement",
+            "Competition", "Adversaire"
+        ]]]
+    },
+    {
+        "dt": "Property Setter",
+        "filters": [["doc_type", "in", [
+            "Joueur", "Match", "Staff", "Sponsor", "Equipement",
+            "Courrier Entrant", "Courrier Sortant", "Entrainement",
+            "Competition", "Adversaire"
+        ]]]
+    },
+]

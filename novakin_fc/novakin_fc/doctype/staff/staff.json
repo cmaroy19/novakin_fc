@@ -1,0 +1,166 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:nom_complet",
+ "creation": "2026-07-25 08:46:27.883929",
+ "custom": 1,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_perso",
+  "nom_complet",
+  "date_naissance",
+  "nationalite",
+  "col_p",
+  "telephone",
+  "email",
+  "photo",
+  "sec_fonction",
+  "categorie",
+  "fonction",
+  "responsabilites",
+  "col_f",
+  "date_debut",
+  "salaire",
+  "statut",
+  "sec_taches",
+  "taches"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_perso",
+   "fieldtype": "Section Break",
+   "label": "Informations Personnelles"
+  },
+  {
+   "fieldname": "nom_complet",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Nom Complet",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "date_naissance",
+   "fieldtype": "Date",
+   "label": "Date de Naissance"
+  },
+  {
+   "fieldname": "nationalite",
+   "fieldtype": "Data",
+   "label": "Nationalit\u00e9"
+  },
+  {
+   "fieldname": "col_p",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "T\u00e9l\u00e9phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "photo",
+   "fieldtype": "Attach Image",
+   "label": "Photo"
+  },
+  {
+   "fieldname": "sec_fonction",
+   "fieldtype": "Section Break",
+   "label": "Fonction et Responsabilit\u00e9s"
+  },
+  {
+   "fieldname": "categorie",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Cat\u00e9gorie",
+   "options": "\nStaff Technique\nStaff Administratif\nM\u00e9dical\nDirection",
+   "reqd": 1
+  },
+  {
+   "fieldname": "fonction",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Fonction"
+  },
+  {
+   "fieldname": "responsabilites",
+   "fieldtype": "Small Text",
+   "label": "Responsabilit\u00e9s"
+  },
+  {
+   "fieldname": "col_f",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_debut",
+   "fieldtype": "Date",
+   "label": "Date d'Embauche"
+  },
+  {
+   "fieldname": "salaire",
+   "fieldtype": "Currency",
+   "label": "Salaire"
+  },
+  {
+   "default": "Actif",
+   "fieldname": "statut",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Statut",
+   "options": "Actif\nInactif"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sec_taches",
+   "fieldtype": "Section Break",
+   "label": "Suivi des T\u00e2ches et Activit\u00e9s"
+  },
+  {
+   "fieldname": "taches",
+   "fieldtype": "Text",
+   "label": "T\u00e2ches / Activit\u00e9s"
+  }
+ ],
+ "grid_page_length": 50,
+ "icon": "fa fa-users",
+ "image_field": "photo",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-27 12:15:23.724910",
+ "modified_by": "Administrator",
+ "module": "NOVAKIN FC",
+ "name": "Staff",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "nom_complet",
+ "track_changes": 1
+}

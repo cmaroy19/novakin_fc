@@ -1,0 +1,166 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:MATCH-{competition}-{#####}",
+ "creation": "2026-07-25 08:47:11.712894",
+ "custom": 1,
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_info",
+  "competition",
+  "adversaire",
+  "domicile_exterieur",
+  "col_i",
+  "date_match",
+  "lieu",
+  "statut",
+  "sec_score",
+  "score_novakin",
+  "score_adversaire",
+  "col_s",
+  "resultat",
+  "sec_perf",
+  "performances",
+  "sec_rapport",
+  "rapport"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_info",
+   "fieldtype": "Section Break",
+   "label": "Informations du Match"
+  },
+  {
+   "fieldname": "competition",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Comp\u00e9tition",
+   "options": "Competition"
+  },
+  {
+   "fieldname": "adversaire",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Adversaire",
+   "options": "Adversaire",
+   "reqd": 1
+  },
+  {
+   "default": "Domicile",
+   "fieldname": "domicile_exterieur",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Domicile / Ext\u00e9rieur",
+   "options": "Domicile\nExt\u00e9rieur"
+  },
+  {
+   "fieldname": "col_i",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_match",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Date et Heure",
+   "reqd": 1
+  },
+  {
+   "fieldname": "lieu",
+   "fieldtype": "Data",
+   "label": "Lieu / Stade"
+  },
+  {
+   "default": "Programm\u00e9",
+   "fieldname": "statut",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Statut",
+   "options": "Programm\u00e9\nJou\u00e9\nReport\u00e9\nAnnul\u00e9"
+  },
+  {
+   "fieldname": "sec_score",
+   "fieldtype": "Section Break",
+   "label": "R\u00e9sultat"
+  },
+  {
+   "fieldname": "score_novakin",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Buts NOVAKIN FC"
+  },
+  {
+   "fieldname": "score_adversaire",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Buts Adversaire"
+  },
+  {
+   "fieldname": "col_s",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "resultat",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "R\u00e9sultat",
+   "options": "\nVictoire\nNul\nD\u00e9faite"
+  },
+  {
+   "fieldname": "sec_perf",
+   "fieldtype": "Section Break",
+   "label": "Performances des Joueurs"
+  },
+  {
+   "fieldname": "performances",
+   "fieldtype": "Table",
+   "label": "Performances",
+   "options": "Performance Match Joueur"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "sec_rapport",
+   "fieldtype": "Section Break",
+   "label": "Rapport de Match"
+  },
+  {
+   "fieldname": "rapport",
+   "fieldtype": "Text Editor",
+   "label": "Rapport / Compte-rendu"
+  }
+ ],
+ "grid_page_length": 50,
+ "icon": "fa fa-futbol",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-07-27 12:15:20.661757",
+ "modified_by": "Administrator",
+ "module": "NOVAKIN FC",
+ "name": "Match",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

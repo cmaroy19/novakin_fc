@@ -1,0 +1,68 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Joueur",
+  "enabled": 1,
+  "modified": "2026-07-25 12:26:09.673900",
+  "module": null,
+  "name": "Joueur - Calculs Auto",
+  "script": "frappe.ui.form.on('Joueur', {\n  date_naissance: calc_age,\n  date_debut_contrat: calc_duree,\n  date_fin_contrat: calc_duree,\n  refresh: function(frm){\n    calc_age(frm);\n    calc_duree(frm);\n    if(!frm.is_new() && frm.doc.name && frm.doc.matricule !== frm.doc.name){\n      frm.set_value('matricule', frm.doc.name);\n    }\n  },\n  after_save: function(frm){\n    if(frm.doc.matricule !== frm.doc.name){\n      frappe.db.set_value('Joueur', frm.doc.name, 'matricule', frm.doc.name);\n    }\n  }\n});\nfunction calc_age(frm){\n  if(frm.doc.date_naissance){\n    let d = frappe.datetime.str_to_obj(frm.doc.date_naissance);\n    let now = new Date();\n    let age = now.getFullYear() - d.getFullYear();\n    let m = now.getMonth() - d.getMonth();\n    if(m < 0 || (m===0 && now.getDate() < d.getDate())) age--;\n    frm.set_value('age', age);\n  }\n}\nfunction calc_duree(frm){\n  if(frm.doc.date_debut_contrat && frm.doc.date_fin_contrat){\n    let deb = frappe.datetime.str_to_obj(frm.doc.date_debut_contrat);\n    let fin = frappe.datetime.str_to_obj(frm.doc.date_fin_contrat);\n    let mois = (fin.getFullYear()-deb.getFullYear())*12 + (fin.getMonth()-deb.getMonth());\n    if(fin.getDate() >= deb.getDate()) { /* mois complet */ } else { mois -= 1; }\n    if(mois < 0) mois = 0;\n    frm.set_value('duree_contrat', mois);\n  }\n}",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Match",
+  "enabled": 1,
+  "modified": "2026-07-25 09:39:13.146344",
+  "module": null,
+  "name": "Match - Résultat Auto",
+  "script": "frappe.ui.form.on('Match', {\n  score_novakin: set_resultat,\n  score_adversaire: set_resultat,\n  statut: function(frm){ if(frm.doc.statut==='Joué') set_resultat(frm); }\n});\nfunction set_resultat(frm){\n  if(frm.doc.score_novakin===undefined || frm.doc.score_adversaire===undefined) return;\n  let a = frm.doc.score_novakin||0, b = frm.doc.score_adversaire||0;\n  let r = a>b ? 'Victoire' : (a===b ? 'Nul' : 'Défaite');\n  frm.set_value('resultat', r);\n}",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Courrier Entrant",
+  "enabled": 1,
+  "modified": "2026-07-25 13:41:04.750195",
+  "module": null,
+  "name": "Courrier Entrant - Historique",
+  "script": "function nfc_load_qr(){return new Promise(function(res){if(window.QRCode){res(true);return;}var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';s.onload=function(){res(true);};s.onerror=function(){res(false);};document.head.appendChild(s);});}\nasync function nfc_gen_qr(t){var ok=await nfc_load_qr();if(!ok||!window.QRCode)return '';var tmp=document.createElement('div');new QRCode(tmp,{text:t,width:110,height:110,correctLevel:QRCode.CorrectLevel.M});await new Promise(function(r){setTimeout(r,250);});var el=tmp.querySelector('img')||tmp.querySelector('canvas');if(!el)return '';return el.tagName==='IMG'?el.src:el.toDataURL();}\n\nfrappe.ui.form.on('Courrier Entrant', {\n  refresh: function(frm){\n    render_preview(frm);\n    if(frm.doc.statut === 'Clôturé' && !frm.is_new()){\n      frm.disable_save();\n      frm.set_read_only();\n      frm.dashboard.set_headline('<span style=\"color:#c8102e\">🔒 Courrier CLÔTURÉ — lecture seule</span>');\n    }\n    if(!frm.is_new()){\n      frm.add_custom_button('🧾 Accusé de Réception', function(){\n        window.open('/printview?doctype=Courrier%20Entrant&name='+encodeURIComponent(frm.doc.name)+'&format=Accus%C3%A9%20de%20R%C3%A9ception&no_letterhead=1','_blank');\n      });\n    }\n  },\n  scan_courrier: function(frm){ render_preview(frm); },\n  before_workflow_action: async function(frm){\n    var action = frm.selected_workflow_action;\n    if(!action) return;\n    try{\n      await frappe.call({method:'frappe.client.insert',args:{doc:{\n        doctype:'Suivi Courrier', parenttype:'Courrier Entrant', parentfield:'historique', parent:frm.doc.name,\n        date_action: frappe.datetime.now_datetime(), action: action, par: frappe.session.user\n      }}});\n    }catch(e){ console.error('hist err', e); }\n  },\n  after_save: async function(frm){\n    var url = frappe.urllib.get_full_url('/app/courrier-entrant/'+encodeURIComponent(frm.doc.name));\n    var d = await nfc_gen_qr(url);\n    if(d && d !== frm.doc.qr_code){ await frappe.db.set_value('Courrier Entrant', frm.doc.name, 'qr_code', d); }\n  }\n});\n\nfunction render_preview(frm){\n  var w = frm.get_field('apercu_html'); if(!w) return;\n  var url = frm.doc.scan_courrier;\n  if(!url){ w.$wrapper.html('<div style=\"padding:30px;text-align:center;color:#999;border:1px dashed #ccc;border-radius:8px;\">Aucun document téléversé.</div>'); return; }\n  var lo = url.toLowerCase(); var html;\n  if(lo.indexOf('.pdf')>=0){ html='<iframe src=\"'+url+'\" style=\"width:100%;height:520px;border:1px solid #ddd;border-radius:8px;\"></iframe>'; }\n  else if(lo.match(/\\.(png|jpg|jpeg|gif|webp|bmp)/)){ html='<div style=\"border:1px solid #ddd;border-radius:8px;padding:8px;text-align:center;background:#fafafa;\"><img src=\"'+url+'\" style=\"max-width:100%;max-height:600px;border-radius:4px;\"/></div>'; }\n  else { html='<div style=\"padding:20px;border:1px solid #ddd;border-radius:8px;\"><a href=\"'+url+'\" target=\"_blank\">📎 Ouvrir le document</a></div>'; }\n  w.$wrapper.html(html);\n}",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Courrier Sortant",
+  "enabled": 1,
+  "modified": "2026-07-25 13:42:51.432629",
+  "module": null,
+  "name": "Courrier Sortant - Historique",
+  "script": "function nfc_load_qr(){return new Promise(function(res){if(window.QRCode){res(true);return;}var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';s.onload=function(){res(true);};s.onerror=function(){res(false);};document.head.appendChild(s);});}\nasync function nfc_gen_qr(t){var ok=await nfc_load_qr();if(!ok||!window.QRCode)return '';var tmp=document.createElement('div');new QRCode(tmp,{text:t,width:110,height:110,correctLevel:QRCode.CorrectLevel.M});await new Promise(function(r){setTimeout(r,250);});var el=tmp.querySelector('img')||tmp.querySelector('canvas');if(!el)return '';return el.tagName==='IMG'?el.src:el.toDataURL();}\n\nfrappe.ui.form.on('Courrier Sortant', {\n  refresh: function(frm){\n    if(frm.doc.statut === 'Archivé' && !frm.is_new()){\n      frm.dashboard.set_headline('📁 Courrier archivé');\n    }\n  },\n  before_workflow_action: async function(frm){\n    var action = frm.selected_workflow_action;\n    if(!action) return Promise.resolve();\n    if(action === 'Soumettre pour validation'){\n      if(!frm.doc.validateur){\n        frappe.throw('Veuillez renseigner le <b>Validateur</b> avant de soumettre pour validation.');\n        return Promise.reject();\n      }\n      if(!frm.doc.corps || frm.doc.corps.replace(/<[^>]*>/g,'').trim()===''){\n        frappe.throw('Le <b>corps du courrier</b> ne peut pas être vide.');\n        return Promise.reject();\n      }\n      if(!frm.doc.destinataire){\n        frappe.throw('Le <b>destinataire</b> est obligatoire.');\n        return Promise.reject();\n      }\n    }\n    try{\n      await frappe.call({method:'frappe.client.insert',args:{doc:{\n        doctype:'Suivi Courrier', parenttype:'Courrier Sortant', parentfield:'historique', parent:frm.doc.name,\n        date_action: frappe.datetime.now_datetime(), action: action, par: frappe.session.user\n      }}});\n    }catch(e){ console.error('hist err', e); }\n  },\n  after_save: async function(frm){\n    var url = frappe.urllib.get_full_url('/app/courrier-sortant/'+encodeURIComponent(frm.doc.name));\n    var d = await nfc_gen_qr(url);\n    if(d && d !== frm.doc.qr_code){ await frappe.db.set_value('Courrier Sortant', frm.doc.name, 'qr_code', d); }\n  }\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Courrier Sortant",
+  "enabled": 1,
+  "modified": "2026-07-25 10:12:09.049552",
+  "module": null,
+  "name": "Courrier Sortant - Modeles",
+  "script": "frappe.ui.form.on('Courrier Sortant', {\n  type_courrier: function(frm){ apply_template(frm); }\n});\nfunction apply_template(frm){\n  var t = frm.doc.type_courrier;\n  var body_empty = !frm.doc.corps || frm.doc.corps.replace(/<[^>]*>/g,'').trim()==='';\n  var templates = {\n    'Attestation': {\n      salutation: 'À qui de droit,',\n      corps: '<p>Nous, soussignés, NOVAKIN FOOTBALL CLUB, attestons par la présente que <b>[Nom &amp; Prénom]</b>, [fonction / qualité], est [membre / joueur / employé] de notre club depuis le <b>[date]</b>.</p><p>La présente attestation est délivrée à l\\'intéressé(e) pour servir et valoir ce que de droit.</p>',\n      formule: 'En foi de quoi, la présente attestation lui est délivrée pour faire valoir ce que de droit.',\n      fonction_sig: 'Le Secrétaire Général'\n    },\n    'Convocation': {\n      salutation: 'Cher membre,',\n      corps: '<p>Par la présente, vous êtes prié(e) de bien vouloir vous présenter le <b>[date]</b> à <b>[heure]</b>, au <b>[lieu]</b>, à l\\'effet de participer à <b>[objet : réunion / séance d\\'entraînement / audition]</b>.</p><p>Votre présence est <b>obligatoire</b>. En cas d\\'empêchement majeur, vous voudrez bien en informer le secrétariat dans les meilleurs délais.</p>',\n      formule: 'Comptant sur votre ponctualité, veuillez agréer nos salutations sportives.',\n      fonction_sig: 'La Direction'\n    },\n    'Invitation': {\n      salutation: 'Madame, Monsieur,',\n      corps: '<p>Le NOVAKIN FOOTBALL CLUB a l\\'honneur de vous convier à <b>[événement]</b> qui se tiendra le <b>[date]</b> à <b>[heure]</b>, au <b>[lieu]</b>.</p><p>Votre présence contribuera à l\\'éclat de cet événement.</p>',\n      formule: 'Dans l\\'attente du plaisir de vous accueillir, veuillez agréer l\\'expression de nos salutations distinguées.',\n      fonction_sig: 'Le Président'\n    },\n    'Réclamation': {\n      salutation: 'Madame, Monsieur,',\n      corps: '<p>Nous nous permettons de porter à votre attention <b>[objet de la réclamation]</b>.</p><p>En conséquence, nous vous prions de bien vouloir <b>[action attendue]</b> dans les meilleurs délais.</p>',\n      formule: 'Dans l\\'attente d\\'une suite favorable, veuillez agréer l\\'expression de nos salutations distinguées.',\n      fonction_sig: 'Le Secrétaire Général'\n    }\n  };\n  var tpl = templates[t];\n  if(tpl && body_empty){\n    frm.set_value('salutation', tpl.salutation);\n    frm.set_value('corps', tpl.corps);\n    frm.set_value('formule_politesse', tpl.formule);\n    if(!frm.doc.fonction_signataire || frm.doc.fonction_signataire==='Le Secrétaire Général'){\n      frm.set_value('fonction_signataire', tpl.fonction_sig);\n    }\n    frappe.show_alert({message: 'Modèle « '+t+' » pré-rempli. Complétez les champs entre crochets.', indicator:'green'});\n  }\n}",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Match",
+  "enabled": 1,
+  "modified": "2026-07-25 12:17:06.041847",
+  "module": null,
+  "name": "Match - Agrégation Stats",
+  "script": "frappe.ui.form.on('Match', {\n  after_save: function(frm){ recompute_stats_for_match(frm); }\n});\n\nasync function recompute_stats_for_match(frm){\n  let joueurs = new Set();\n  (frm.doc.performances || []).forEach(function(r){ if(r.joueur) joueurs.add(r.joueur); });\n  if(joueurs.size === 0){ return; }\n\n  frappe.show_alert({message:'Mise à jour des statistiques...', indicator:'blue'});\n  const token = frappe.csrf_token;\n\n  async function apiGet(url){\n    const r = await fetch(url, {headers:{'X-Frappe-CSRF-Token':token,'Accept':'application/json'}});\n    const j = await r.json();\n    return j.message;\n  }\n\n  for(const joueur of joueurs){\n    try{\n      // toutes les lignes de perf du joueur\n      let url = '/api/method/frappe.client.get_list?doctype=' + encodeURIComponent('Performance Match Joueur') +\n        '&parent=Match&limit_page_length=0' +\n        '&filters=' + encodeURIComponent(JSON.stringify({joueur: joueur})) +\n        '&fields=' + encodeURIComponent(JSON.stringify(['parent','buts','passes','cartons_jaunes','cartons_rouges','minutes']));\n      let rows = await apiGet(url) || [];\n      let parents = [...new Set(rows.map(r=>r.parent))];\n      let statutMap = {};\n      if(parents.length){\n        let murl = '/api/method/frappe.client.get_list?doctype=Match&limit_page_length=0' +\n          '&filters=' + encodeURIComponent(JSON.stringify([['name','in',parents]])) +\n          '&fields=' + encodeURIComponent(JSON.stringify(['name','statut']));\n        let matchs = await apiGet(murl) || [];\n        matchs.forEach(m=> statutMap[m.name]=m.statut);\n      }\n      let joues = rows.filter(r=> statutMap[r.parent]==='Joué');\n      let tb=0,tp=0,tcj=0,tcr=0,tmin=0;\n      joues.forEach(function(r){ tb+=(r.buts||0); tp+=(r.passes||0); tcj+=(r.cartons_jaunes||0); tcr+=(r.cartons_rouges||0); tmin+=(r.minutes||0); });\n      let nb = joues.length;\n      let ratio = nb ? (tb/nb) : 0;\n      await frappe.db.set_value('Joueur', joueur, {\n        buts: tb, passes_decisives: tp, cartons_jaunes: tcj, cartons_rouges: tcr,\n        minutes_jouees: tmin, matchs_joues: nb, ratio_buts: ratio\n      });\n    }catch(e){ console.error('maj stats '+joueur, e); }\n  }\n  frappe.show_alert({message:'Statistiques mises à jour ✔', indicator:'green'});\n}",
+  "view": "Form"
+ }
+]
