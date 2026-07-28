@@ -1,5 +1,14 @@
 app_name = "novakin_fc"
 app_title = "Novakin Fc"
+
+add_to_apps_screen = [
+	{
+		"name": "novakin_fc",
+		"logo": "/assets/frappe/images/frappe-framework-logo.svg",
+		"title": "NOVAKIN FC",
+		"route": "/app/novakin-fc",
+	}
+]
 app_publisher = "egideem19"
 app_description = "gestion administratif du club"
 app_email = "cmaroy19@gmail.com"
