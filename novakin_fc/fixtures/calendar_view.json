@@ -1,0 +1,13 @@
+[
+ {
+  "all_day": 0,
+  "docstatus": 0,
+  "doctype": "Calendar View",
+  "end_date_field": "date_match",
+  "modified": "2026-07-29 16:04:27.231595",
+  "name": "Calendrier des Matchs",
+  "reference_doctype": "Match",
+  "start_date_field": "date_match",
+  "subject_field": "adversaire"
+ }
+]

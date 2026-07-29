@@ -64,5 +64,16 @@
   "name": "Match - Agrégation Stats",
   "script": "frappe.ui.form.on('Match', {\n  after_save: function(frm){ recompute_stats_for_match(frm); }\n});\n\nasync function recompute_stats_for_match(frm){\n  let joueurs = new Set();\n  (frm.doc.performances || []).forEach(function(r){ if(r.joueur) joueurs.add(r.joueur); });\n  if(joueurs.size === 0){ return; }\n\n  frappe.show_alert({message:'Mise à jour des statistiques...', indicator:'blue'});\n  const token = frappe.csrf_token;\n\n  async function apiGet(url){\n    const r = await fetch(url, {headers:{'X-Frappe-CSRF-Token':token,'Accept':'application/json'}});\n    const j = await r.json();\n    return j.message;\n  }\n\n  for(const joueur of joueurs){\n    try{\n      // toutes les lignes de perf du joueur\n      let url = '/api/method/frappe.client.get_list?doctype=' + encodeURIComponent('Performance Match Joueur') +\n        '&parent=Match&limit_page_length=0' +\n        '&filters=' + encodeURIComponent(JSON.stringify({joueur: joueur})) +\n        '&fields=' + encodeURIComponent(JSON.stringify(['parent','buts','passes','cartons_jaunes','cartons_rouges','minutes']));\n      let rows = await apiGet(url) || [];\n      let parents = [...new Set(rows.map(r=>r.parent))];\n      let statutMap = {};\n      if(parents.length){\n        let murl = '/api/method/frappe.client.get_list?doctype=Match&limit_page_length=0' +\n          '&filters=' + encodeURIComponent(JSON.stringify([['name','in',parents]])) +\n          '&fields=' + encodeURIComponent(JSON.stringify(['name','statut']));\n        let matchs = await apiGet(murl) || [];\n        matchs.forEach(m=> statutMap[m.name]=m.statut);\n      }\n      let joues = rows.filter(r=> statutMap[r.parent]==='Joué');\n      let tb=0,tp=0,tcj=0,tcr=0,tmin=0;\n      joues.forEach(function(r){ tb+=(r.buts||0); tp+=(r.passes||0); tcj+=(r.cartons_jaunes||0); tcr+=(r.cartons_rouges||0); tmin+=(r.minutes||0); });\n      let nb = joues.length;\n      let ratio = nb ? (tb/nb) : 0;\n      await frappe.db.set_value('Joueur', joueur, {\n        buts: tb, passes_decisives: tp, cartons_jaunes: tcj, cartons_rouges: tcr,\n        minutes_jouees: tmin, matchs_joues: nb, ratio_buts: ratio\n      });\n    }catch(e){ console.error('maj stats '+joueur, e); }\n  }\n  frappe.show_alert({message:'Statistiques mises à jour ✔', indicator:'green'});\n}",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Match",
+  "enabled": 1,
+  "modified": "2026-07-29 16:14:31.979598",
+  "module": null,
+  "name": "Match - Bouton Calendrier",
+  "script": "frappe.listview_settings['Match'] = frappe.listview_settings['Match'] || {};\nfrappe.listview_settings['Match'].onload = function(listview) {\n    listview.page.add_inner_button(__('📅 Calendrier'), function() {\n        frappe.set_route('List', 'Match', 'Calendar', 'Calendrier des Matchs');\n    });\n};",
+  "view": "List"
  }
 ]

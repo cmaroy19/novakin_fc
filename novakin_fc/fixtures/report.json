@@ -3,38 +3,11 @@
   "add_total_row": 0,
   "add_translate_data": 0,
   "columns": [],
+  "disable_prepared_report_automation": 0,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Report",
-  "filters": [],
-  "is_standard": "No",
-  "javascript": null,
-  "json": "{\"columns\":[[\"reference\",\"Courrier Entrant\"],[\"date_reception\",\"Courrier Entrant\"],[\"expediteur\",\"Courrier Entrant\"],[\"objet\",\"Courrier Entrant\"],[\"service\",\"Courrier Entrant\"],[\"statut\",\"Courrier Entrant\"],[\"priorite\",\"Courrier Entrant\"]],\"filters\":[],\"sort_by\":\"modified\",\"sort_order\":\"desc\"}",
-  "letter_head": "Paie IT Manager",
-  "modified": "2026-07-25 13:21:09.850275",
-  "module": "NOVAKIN FC",
-  "name": "Registre des Courriers Entrants",
-  "prepared_report": 0,
-  "query": null,
-  "ref_doctype": "Courrier Entrant",
-  "reference_report": null,
-  "report_name": "Registre des Courriers Entrants",
-  "report_script": null,
-  "report_type": "Report Builder",
-  "roles": [
-   {
-    "role": "Staff Administratif NOVAKIN"
-   }
-  ],
-  "timeout": 0
- },
- {
-  "add_total_row": 0,
-  "add_translate_data": 0,
-  "columns": [],
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
+  "doctype_to_sync": [],
   "filters": [],
   "is_standard": "No",
   "javascript": null,
@@ -55,15 +28,114 @@
     "role": "Staff Administratif NOVAKIN"
    }
   ],
+  "snapshot_report": 0,
   "timeout": 0
  },
  {
   "add_total_row": 0,
   "add_translate_data": 0,
   "columns": [],
+  "disable_prepared_report_automation": 0,
   "disabled": 0,
   "docstatus": 0,
   "doctype": "Report",
+  "doctype_to_sync": [],
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"columns\":[[\"nom\",\"Equipement\"],[\"categorie\",\"Equipement\"],[\"quantite\",\"Equipement\"],[\"seuil_alerte\",\"Equipement\"],[\"statut_stock\",\"Equipement\"]],\"filters\":[],\"sort_by\":\"modified\",\"sort_order\":\"desc\"}",
+  "letter_head": "Paie IT Manager",
+  "modified": "2026-07-25 13:21:13.282555",
+  "module": "NOVAKIN FC",
+  "name": "Inventaire des Équipements",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Equipement",
+  "reference_report": null,
+  "report_name": "Inventaire des Équipements",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "role": "Staff Administratif NOVAKIN"
+   }
+  ],
+  "snapshot_report": 0,
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disable_prepared_report_automation": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "doctype_to_sync": [],
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"columns\":[[\"nom_sponsor\",\"Sponsor\"],[\"type_partenariat\",\"Sponsor\"],[\"montant\",\"Sponsor\"],[\"date_fin\",\"Sponsor\"],[\"statut\",\"Sponsor\"]],\"filters\":[],\"sort_by\":\"modified\",\"sort_order\":\"desc\"}",
+  "letter_head": "Paie IT Manager",
+  "modified": "2026-07-25 13:21:13.953146",
+  "module": "NOVAKIN FC",
+  "name": "Portefeuille Sponsors",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Sponsor",
+  "reference_report": null,
+  "report_name": "Portefeuille Sponsors",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "role": "Staff Administratif NOVAKIN"
+   }
+  ],
+  "snapshot_report": 0,
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disable_prepared_report_automation": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "doctype_to_sync": [],
+  "filters": [],
+  "is_standard": "No",
+  "javascript": null,
+  "json": "{\"columns\":[[\"reference\",\"Courrier Entrant\"],[\"date_reception\",\"Courrier Entrant\"],[\"expediteur\",\"Courrier Entrant\"],[\"objet\",\"Courrier Entrant\"],[\"service\",\"Courrier Entrant\"],[\"statut\",\"Courrier Entrant\"],[\"priorite\",\"Courrier Entrant\"]],\"filters\":[],\"sort_by\":\"modified\",\"sort_order\":\"desc\"}",
+  "letter_head": "Paie IT Manager",
+  "modified": "2026-07-25 13:21:09.850275",
+  "module": "NOVAKIN FC",
+  "name": "Registre des Courriers Entrants",
+  "prepared_report": 0,
+  "query": null,
+  "ref_doctype": "Courrier Entrant",
+  "reference_report": null,
+  "report_name": "Registre des Courriers Entrants",
+  "report_script": null,
+  "report_type": "Report Builder",
+  "roles": [
+   {
+    "role": "Staff Administratif NOVAKIN"
+   }
+  ],
+  "snapshot_report": 0,
+  "timeout": 0
+ },
+ {
+  "add_total_row": 0,
+  "add_translate_data": 0,
+  "columns": [],
+  "disable_prepared_report_automation": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Report",
+  "doctype_to_sync": [],
   "filters": [],
   "is_standard": "No",
   "javascript": null,
@@ -87,64 +159,7 @@
     "role": "Joueur NOVAKIN"
    }
   ],
-  "timeout": 0
- },
- {
-  "add_total_row": 0,
-  "add_translate_data": 0,
-  "columns": [],
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
-  "filters": [],
-  "is_standard": "No",
-  "javascript": null,
-  "json": "{\"columns\":[[\"nom\",\"Equipement\"],[\"categorie\",\"Equipement\"],[\"quantite\",\"Equipement\"],[\"seuil_alerte\",\"Equipement\"],[\"statut_stock\",\"Equipement\"]],\"filters\":[],\"sort_by\":\"modified\",\"sort_order\":\"desc\"}",
-  "letter_head": "Paie IT Manager",
-  "modified": "2026-07-25 13:21:13.282555",
-  "module": "NOVAKIN FC",
-  "name": "Inventaire des Équipements",
-  "prepared_report": 0,
-  "query": null,
-  "ref_doctype": "Equipement",
-  "reference_report": null,
-  "report_name": "Inventaire des Équipements",
-  "report_script": null,
-  "report_type": "Report Builder",
-  "roles": [
-   {
-    "role": "Staff Administratif NOVAKIN"
-   }
-  ],
-  "timeout": 0
- },
- {
-  "add_total_row": 0,
-  "add_translate_data": 0,
-  "columns": [],
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
-  "filters": [],
-  "is_standard": "No",
-  "javascript": null,
-  "json": "{\"columns\":[[\"nom_sponsor\",\"Sponsor\"],[\"type_partenariat\",\"Sponsor\"],[\"montant\",\"Sponsor\"],[\"date_fin\",\"Sponsor\"],[\"statut\",\"Sponsor\"]],\"filters\":[],\"sort_by\":\"modified\",\"sort_order\":\"desc\"}",
-  "letter_head": "Paie IT Manager",
-  "modified": "2026-07-25 13:21:13.953146",
-  "module": "NOVAKIN FC",
-  "name": "Portefeuille Sponsors",
-  "prepared_report": 0,
-  "query": null,
-  "ref_doctype": "Sponsor",
-  "reference_report": null,
-  "report_name": "Portefeuille Sponsors",
-  "report_script": null,
-  "report_type": "Report Builder",
-  "roles": [
-   {
-    "role": "Staff Administratif NOVAKIN"
-   }
-  ],
+  "snapshot_report": 0,
   "timeout": 0
  }
 ]

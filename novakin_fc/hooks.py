@@ -34,8 +34,8 @@ app_license = "mit"
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/novakin_fc/css/novakin_fc.css"
-# app_include_js = "/assets/novakin_fc/js/novakin_fc.js"
+app_include_css = "/assets/novakin_fc/css/novakin_fc.css"
+app_include_js = "/assets/novakin_fc/js/novakin_fc.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/novakin_fc/css/novakin_fc.css"
@@ -297,7 +297,15 @@ fixtures = [
     # Espace de travail (tableau de bord)
     {
         "dt": "Workspace",
-        "filters": [["name", "=", "NOVAKIN FC"]]
+        "filters": [["module", "=", "NOVAKIN FC"]]
+    },
+    {
+        "dt": "Calendar View",
+        "filters": [["reference_doctype", "in", ["Match", "Entrainement"]]]
+    },
+    {
+        "dt": "Print Format",
+        "filters": [["doc_type", "in", ["Joueur", "Match", "Sponsor", "Equipement", "Courrier Entrant", "Courrier Sortant"]]]
     },
     # Personnalisations éventuelles (Custom Field / Property Setter)
     {
