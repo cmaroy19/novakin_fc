@@ -325,3 +325,10 @@ fixtures = [
         ]]]
     },
 ]
+# Website route for public mail verification
+website_route_rules = [
+    {
+        "from_route": "/verification-courrier/<token>",
+        "to_route": "verification_courrier"
+    }
+]
