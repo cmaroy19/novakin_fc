@@ -31,10 +31,13 @@
             letter-spacing:1px;
             text-transform:uppercase;
         ">
-            Vérification de courrier
+            Vérification officielle de courrier
         </div>
 
     </div>
+
+
+    {% if verification_valide %}
 
     <div style="
         border:1px solid #E5E5E5;
@@ -52,14 +55,15 @@
         ">
 
             <div style="
-                width:48px;
-                height:48px;
-                line-height:48px;
+                width:50px;
+                height:50px;
+                line-height:50px;
                 margin:auto;
                 background:#C9A227;
                 border-radius:50%;
-                font-size:23px;
+                font-size:24px;
                 font-weight:bold;
+                color:#171717;
             ">
                 ✓
             </div>
@@ -77,40 +81,164 @@
                 margin-top:6px;
                 color:#666;
                 font-size:13px;
+                line-height:1.5;
             ">
-                Courrier enregistré électroniquement par NOVAKIN FC.
+                Ce courrier a été réceptionné et enregistré électroniquement par NOVAKIN FC.
             </div>
 
         </div>
 
+
         <div style="padding:30px;">
 
+            <div style="margin-bottom:22px;">
+                <div style="
+                    font-size:10px;
+                    color:#999;
+                    text-transform:uppercase;
+                    letter-spacing:1px;
+                ">
+                    Référence du courrier
+                </div>
+
+                <div style="
+                    margin-top:5px;
+                    font-size:16px;
+                    font-weight:700;
+                    color:#171717;
+                    word-break:break-word;
+                ">
+                    {{ courrier.reference or courrier.name }}
+                </div>
+            </div>
+
+
             <div style="
-                font-size:10px;
-                color:#999;
-                text-transform:uppercase;
-                letter-spacing:1px;
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:24px;
             ">
-                Référence
+
+                <div>
+                    <div style="
+                        font-size:10px;
+                        color:#999;
+                        text-transform:uppercase;
+                        letter-spacing:1px;
+                    ">
+                        Date de réception
+                    </div>
+
+                    <div style="
+                        margin-top:5px;
+                        font-size:14px;
+                        font-weight:600;
+                    ">
+                        {{ frappe.utils.formatdate(courrier.date_reception, "dd MMMM yyyy") if courrier.date_reception else "—" }}
+                    </div>
+                </div>
+
+
+                <div>
+                    <div style="
+                        font-size:10px;
+                        color:#999;
+                        text-transform:uppercase;
+                        letter-spacing:1px;
+                    ">
+                        Mode de réception
+                    </div>
+
+                    <div style="
+                        margin-top:5px;
+                        font-size:14px;
+                        font-weight:600;
+                    ">
+                        {{ courrier.mode_reception or "—" }}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div style="
+            padding:18px 30px;
+            background:#FAFAFA;
+            border-top:1px solid #E8E8E8;
+            text-align:center;
+            color:#666;
+            font-size:11px;
+            line-height:1.6;
+        ">
+            Cet enregistrement confirme la réception du courrier dans le système électronique officiel de
+            <strong>NOVAKIN FC</strong>.
+        </div>
+
+    </div>
+
+
+    {% else %}
+
+    <div style="
+        border:1px solid #E5E5E5;
+        border-radius:14px;
+        overflow:hidden;
+        background:#FFFFFF;
+        box-shadow:0 8px 30px rgba(0,0,0,0.06);
+    ">
+
+        <div style="
+            padding:35px 30px;
+            text-align:center;
+        ">
+
+            <div style="
+                width:50px;
+                height:50px;
+                line-height:50px;
+                margin:auto;
+                background:#EFEFEF;
+                border-radius:50%;
+                font-size:24px;
+                font-weight:bold;
+                color:#777;
+            ">
+                ×
             </div>
 
             <div style="
-                margin-top:4px;
-                font-size:16px;
-                font-weight:700;
+                margin-top:15px;
+                font-size:20px;
+                font-weight:800;
+                color:#171717;
             ">
-                TEST-NOVAKIN-001
+                VÉRIFICATION IMPOSSIBLE
+            </div>
+
+            <div style="
+                margin-top:8px;
+                color:#666;
+                font-size:13px;
+                line-height:1.6;
+            ">
+                Aucun courrier correspondant à ce code de vérification
+                n'a été trouvé dans le système de NOVAKIN FC.
             </div>
 
         </div>
 
     </div>
 
+    {% endif %}
+
+
     <div style="
-        margin-top:20px;
+        margin-top:22px;
         text-align:center;
-        color:#AAA;
         font-size:10px;
+        color:#AAA;
     ">
         Novakin FC · Là où la gloire commence
     </div>
